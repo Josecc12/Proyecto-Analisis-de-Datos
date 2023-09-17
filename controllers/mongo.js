@@ -37,11 +37,18 @@ const getTop5Countries = async (req, res = response) => {
       { $limit: 5 },
     ]);
 
-    res.json(top5Countries);
+    // Realizar una transformación del resultado para el formato deseado
+    const formattedTop5Countries = {};
+    top5Countries.forEach(item => {
+      formattedTop5Countries[item._id] = item.totalPurchases;
+    });
+
+    res.json(formattedTop5Countries);
   } catch (error) {
     res.status(500).json({ error: 'Error fetching top 5 countries' });
   }
 };
+
 
 // Function to get the count of payment methods
 const getPaymentMethodCounts = async (req, res = response) => {
@@ -55,11 +62,18 @@ const getPaymentMethodCounts = async (req, res = response) => {
       },
     ]);
 
-    res.json(paymentMethodCounts);
+    // Realizar una transformación del resultado para el formato deseado
+    const formattedPaymentMethodCounts = {};
+    paymentMethodCounts.forEach(item => {
+      formattedPaymentMethodCounts[item._id] = item.count;
+    });
+
+    res.json(formattedPaymentMethodCounts);
   } catch (error) {
     res.status(500).json({ error: 'Error fetching payment method counts' });
   }
 };
+
 
   
   module.exports = { getDocumentsAndCountGenders , getTop5Countries , getPaymentMethodCounts };

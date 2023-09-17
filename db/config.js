@@ -26,6 +26,7 @@ const mongodb = async () => {
             { useNewUrlParser: true, useUnifiedTopology: true });
         console.log('db_online')
     } catch (error) {
+        console.log(error)
         console.log('Error initializing DB')
     }
 }
