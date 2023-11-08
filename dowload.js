@@ -7,7 +7,7 @@ const mysql = require('mysql2/promise');
 require('dotenv').config()
 
 
-mongodb()
+
 
 // Configura la conexión a tu base de datos MySQL
 const dbConfig = {
@@ -110,13 +110,13 @@ const downloadData = async () => {
 };
 
 const executeDownloadForAnalysis = async () => {
-  for (let i = 0; i < 1; i++) {
+  for (let i = 0; i < 140; i++) {
     console.log(`Ejecutando descarga y análisis número ${i + 1}`);
     await downloadData();
   }
 };
 
-executeDownloadForAnalysis();
+module.exports = executeDownloadForAnalysis;
 
 
 

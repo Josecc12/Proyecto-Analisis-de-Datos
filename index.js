@@ -1,10 +1,21 @@
 const express = require('express')
 const  { mongodb } = require('./db/config')
+const cron = require('node-cron');
+const executeDownloadForAnalysis = require('./dowload');
 
 
 mongodb()
 const app = express();
 require('dotenv').config();
+
+
+
+
+// Programar la tarea cron para las 11 p. m. todos los días
+cron.schedule('0 23 * * *', () => {
+  console.log('Ejecutando descarga y análisis a las 11 p. m.');
+  executeDownloadAndAnalysis();
+});
 
 
 // Middleware para configurar los encabezados CORS
