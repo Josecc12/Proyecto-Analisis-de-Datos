@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 const AWS = require('aws-sdk');
+
 require('dotenv').config()
+
+
 
 
 
@@ -8,8 +11,8 @@ require('dotenv').config()
 AWS.config.update({
     region: 'us-east-1',
     credentials: {
-        accessKeyId: 'AKIA3QASZ5DWF2XB7BFR',
-        secretAccessKey: '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'
+        accessKeyId: process.env.DYNAMO_PUBLIC_KEY,
+        secretAccessKey: process.env.DYNAMO_SECRET_KEY
     }
 });
 
@@ -23,6 +26,7 @@ const mongodb = async () => {
             { useNewUrlParser: true, useUnifiedTopology: true });
         console.log('db_online')
     } catch (error) {
+        console.log(error)
         console.log('Error initializing DB')
     }
 }
